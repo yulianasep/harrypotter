@@ -8,18 +8,18 @@ from django.shortcuts import get_object_or_404
 from .serializers import UserSerializer, HouseSerializer, SpellSerializer
 from apps.users.models import House, Spell, User
 
-""" class UserList(APIView):
-    def get(self, request, *args, **kwargs):
-        return Response(status=status.HTTP_200_OK)
+# class UserList(APIView):
+#     def get(self, request, *args, **kwargs):
+#         return Response(status=status.HTTP_200_OK)
     
-    def post(self, request, *args, **kwargs):
-        serializer = UserSerializer(data=request.data)
-        if serializer.is_valid():
-            print("Es valido", serializer.data)
-            return Response(serializer.data)
-        else:
-            print("No es valido", serializer.errors)
-            return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST) """
+#     def post(self, request, *args, **kwargs):
+#         serializer = UserSerializer(data=request.data)
+#         if serializer.is_valid():
+#             print("Es valido", serializer.data)
+#             return Response(serializer.data)
+#         else:
+#             print("No es valido", serializer.errors)
+#             return Response(serializer.errors, status=status.HTTP_400_BAD_REQUEST)
 
 
 @api_view(['GET', 'POST'])
@@ -63,40 +63,40 @@ def spell_detail_view (request, pk=None):
         
     return Response({"Error" : f"{spell} does not exist!"} ,status=status.HTTP_400_BAD_REQUEST)
 
-""" 
-class HouseAPIView(APIView):
 
-    def get(self, request, *args, **kwargs):
-        houses = House.objects.all()
-        serializer = HouseSerializer(instance=houses, many=True)
-        return Response(serializer.data)
+# class HouseAPIView(APIView):
 
-    def post(self, request, *args, **kwargs):
-        serializer = HouseSerializer(data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
+#     def get(self, request, *args, **kwargs):
+#         houses = House.objects.all()
+#         serializer = HouseSerializer(instance=houses, many=True)
+#         return Response(serializer.data)
+
+#     def post(self, request, *args, **kwargs):
+#         serializer = HouseSerializer(data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response(serializer.data)
 
         
-class HouseDetailView(APIView):
+# class HouseDetailView(APIView):
 
-    def get(self, request, pk=None, *args, **kwargs):
-        house = get_object_or_404(House, pk=pk)
-        serializer = HouseSerializer(instance=house)
-        return Response(serializer.data)
+#     def get(self, request, pk=None, *args, **kwargs):
+#         house = get_object_or_404(House, pk=pk)
+#         serializer = HouseSerializer(instance=house)
+#         return Response(serializer.data)
     
-    def put(self, request, pk=None, *args, **kwargs):
-        house = get_object_or_404(House, pk=pk)
-        serializer = HouseSerializer(instance=house, data=request.data)
-        serializer.is_valid(raise_exception=True)
-        serializer.save()
-        return Response(serializer.data)
+#     def put(self, request, pk=None, *args, **kwargs):
+#         house = get_object_or_404(House, pk=pk)
+#         serializer = HouseSerializer(instance=house, data=request.data)
+#         serializer.is_valid(raise_exception=True)
+#         serializer.save()
+#         return Response(serializer.data)
         
-    def delete(self, request, pk=None, *args, **kwargs):
-        house = get_object_or_404(House, pk=pk)
-        house.delete()
-        return Response(status=status.HTTP_204_NO_CONTENT) """
-    
+#     def delete(self, request, pk=None, *args, **kwargs):
+#         house = get_object_or_404(House, pk=pk)
+#         house.delete()
+#         return Response(status=status.HTTP_204_NO_CONTENT) 
+
 
 class HouseViewSet(viewsets.ModelViewSet):
     serializer_class = HouseSerializer
@@ -132,7 +132,7 @@ class HouseViewSet(viewsets.ModelViewSet):
             response = {'message': 'Successfully deleted'}
             return Response(response, status=status.HTTP_200_OK)
         return Response({'error': 'No existe un producto con esos datos!'}, status=status.HTTP_400_BAD_REQUEST)
-    
+
 class UserViewSet(viewsets.ModelViewSet):
     serializer_class = UserSerializer
     queryset = User.objects.all()

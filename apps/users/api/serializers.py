@@ -21,6 +21,11 @@ from apps.users.models import House, Spell, User
         representation = super().to_representation(instance)
         representation["nombre"] = representation["nombre"].upper()
         return representation """
+
+class UserTokenSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = User
+        fields = ("username", "email", "name", "last_name")
     
  
 class UserSerializer(serializers.ModelSerializer):
